@@ -1,0 +1,62 @@
+calculator:
+  functions:
+    add:
+      description: "This function adds two numbers"
+      parameters:
+        - x: float
+        - y: float
+      returns: float
+    subtract:
+      description: "This function subtracts two numbers"
+      parameters:
+        - x: float
+        - y: float
+      returns: float
+    multiply:
+      description: "This function multiplies two numbers"
+      parameters:
+        - x: float
+        - y: float
+      returns: float
+    divide:
+      description: "This function divides two numbers"
+      parameters:
+        - x: float
+        - y: float
+      returns: float
+      raises: "ValueError: Cannot divide by zero!"
+  main:
+    description: "Simple Calculator"
+    steps:
+      - input: "Enter first number"
+        type: float
+      - input: "Enter second number"
+        type: float
+      - choice: "Choose operation (1/2/3/4)"
+        options:
+          - 1: "Add"
+          - 2: "Subtract"
+          - 3: "Multiply"
+          - 4: "Divide"
+      - execute: "Perform chosen operation"
+      - output: "Display result"
+
+tests:
+  TestCalculator:
+    test_add:
+      - assertEqual: [10, 5, 15]
+      - assertEqual: [-1, 1, 0]
+      - assertEqual: [-1, -2, -3]
+    test_subtract:
+      - assertEqual: [10, 5, 5]
+      - assertEqual: [-1, 1, -2]
+      - assertEqual: [-1, -1, 0]
+    test_multiply:
+      - assertEqual: [10, 5, 50]
+      - assertEqual: [-1, 1, -1]
+      - assertEqual: [-1, -1, 1]
+    test_divide:
+      - assertEqual: [10, 2, 5]
+      - assertEqual: [-1, 1, -1]
+      - assertEqual: [-1, -1, 1]
+      - assertRaises: [10, 0, "ValueError"]
